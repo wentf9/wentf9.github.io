@@ -1,6 +1,6 @@
 ---
 date: '2026-04-23T14:33:40+08:00'
-draft: true
+draft: false
 title: 'PRAGMATA(识质存在) 在Linux环境下无法开启hdr和光线追踪'
 categories: ["游戏"]
 tags:
@@ -56,4 +56,4 @@ tags:
 ```bash
 gamescope -W 3840 -H 2160 -r 120 --hdr-enabled --borderless -- env VKD3D_CONFIG=dxr,dxr11 %command% /WineDetectionEnabled:False
 ```
-分辨率和fps可以根据实际情况设置
+分辨率和fps可以根据实际情况设置。
