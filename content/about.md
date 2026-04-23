@@ -1,24 +1,17 @@
 ---
 title: "关于"
-date: 2024-01-01T00:00:00+08:00
+date: 2026-04-23T00:00:00+08:00
 layout: "about"
-name: "wentf9"
-bio: "热爱技术，热爱生活"
-avatar: "images/bg_miku_1.jpg" 
+name: "无月"
+bio: ""
+avatar: "images/avatar.png" 
 social:
   - name: GitHub
     icon: github
     url: https://github.com/wentf9
-  - name: Twitter
-    icon: twitter
-    url: https://twitter.com/wentf9
-  - name: Mail
-    icon: envelope
-    url: mailto:your-email@example.com
 skills:
-  - Hugo
   - Go
-  - JavaScript
+  - Java
   - Python
 ---
 
