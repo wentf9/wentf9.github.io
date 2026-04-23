@@ -1080,6 +1080,10 @@ main {
   margin-bottom: 24px;
 }
 
+.post .meta .date {
+  margin-bottom: 0;
+}
+
 .read-count {
   display: flex;
   align-items: center;
