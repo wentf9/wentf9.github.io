@@ -115,7 +115,7 @@ body {
 
 main {
   padding-top: 100px;
-  max-width: 1250px;
+  max-width: 1600px;
   margin: 0 auto;
   padding-left: 20px;
   padding-right: 20px;
@@ -358,7 +358,7 @@ main {
   grid-template-columns: 1fr;
   gap: 40px;
   align-items: start;
-  max-width: 1150px;
+  max-width: 1500px;
   margin: 0 auto;
   position: relative;
 }
