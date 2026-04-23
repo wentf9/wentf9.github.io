@@ -358,14 +358,14 @@ main {
   grid-template-columns: 1fr;
   gap: 40px;
   align-items: start;
-  max-width: 1200px;
+  max-width: 1150px;
   margin: 0 auto;
   position: relative;
 }
 
 @media (min-width: 1200px) {
   .post-layout {
-    grid-template-columns: 1fr 280px;
+    grid-template-columns: minmax(0, 1fr) 320px;
   }
 }
 
