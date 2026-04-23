@@ -1,0 +1,31 @@
+[params]
+  # 站点基本信息
+  site_name = "无月的博客"
+  site_description = "记录学习和解决问题的过程"
+  author_name = "无月"
+  author_bio = ""
+  
+  # 主题设置
+  theme_accent_color = "#00d4ff"
+  background_image = "images/bg_miku_1.jpg"
+  background_image_opacity = 0.3
+  background_rotation_enabled = false
+  background_rotation_interval = 30
+  
+
+  # Giscus 评论系统配置
+  # 访问 https://giscus.app/zh-CN 获取配置信息
+  [params.giscus]
+    enable = true
+    repo = "wentf9/wentf9.github.io"
+    repo_id = "R_kgDOSIZaXA"
+    category = "Announcements"
+    category_id = "DIC_kwDOSIZaXM4C7Vg7"
+    mapping = "pathname"
+    strict = "0"
+    reactions_enabled = "1"
+    emit_metadata = "0"
+    input_position = "bottom"
+    theme = "dark"
+    lang = "zh-CN"
+    crossorigin = "anonymous"

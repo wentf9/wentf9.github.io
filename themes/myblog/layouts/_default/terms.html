@@ -1,0 +1,25 @@
+{{ define "main" }}
+<div class="hero">
+  <h1>{{ .Title }}</h1>
+  <p>全部分类/标签列表</p>
+</div>
+
+<div class="content-section">
+  <div class="glass" style="padding: 2rem; border-radius: 12px;">
+    {{ if not .Data.Terms }}
+      <p class="empty" style="text-align: center; color: rgba(255,255,255,0.6);">暂无内容。</p>
+    {{ else }}
+      <ul class="terms-list" style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+        {{ range $key, $value := .Data.Terms }}
+          <li>
+            <a href="{{ $.RelPermalink }}{{ $key | urlize }}/" class="category-badge" style="font-size: 1rem; padding: 10px 20px;">
+              {{ $key }} 
+              <span style="background: rgba(255,255,255,0.2); border-radius: 50%; padding: 2px 8px; margin-left: 8px; font-size: 0.8rem;">{{ len $value }}</span>
+            </a>
+          </li>
+        {{ end }}
+      </ul>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

@@ -1,0 +1,38 @@
+{{ define "main" }}
+<div class="hero">
+  <div class="tag-header" style='--tag-color: {{ .Params.color | default "#00d4ff" }}'>
+    <span class="tag-label">标签分类</span>
+    <h1># {{ .Title }}</h1>
+    <p>{{ len .Pages }} 篇文章</p>
+  </div>
+</div>
+
+<div class="content-section">
+  {{ if not .Pages }}
+    <div class="empty-state glass">
+      <p>该标签下暂无文章。</p>
+      <a href="{{ "/" | relURL }}" class="back-home">返回主页</a>
+    </div>
+  {{ else }}
+    <div class="posts-grid">
+      {{ range .Pages.ByDate.Reverse }}
+        <article class="post-preview glass">
+          <div class="post-header">
+            <span class="date">{{ .Date.Format "2006年1月2日 15:04:05" }}</span>
+            <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+          </div>
+          {{ if .Content }}
+            <p class="excerpt">{{ .Summary | truncate 120 }}</p>
+          {{ end }}
+          <div class="post-footer">
+            <a href="{{ .RelPermalink }}" class="read-more">
+              阅读全文
+              <span class="arrow">→</span>
+            </a>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+  {{ end }}
+</div>
+{{ end }}

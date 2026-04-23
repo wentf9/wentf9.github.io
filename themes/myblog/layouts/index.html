@@ -1,0 +1,53 @@
+{{ define "main" }}
+<div class="hero">
+  <h1>{{ .Site.Params.site_name }}</h1>
+  <p>{{ .Site.Params.site_description }}</p>
+</div>
+
+<div class="content-section">
+  {{ $posts := where .Site.RegularPages "Type" "posts" }}
+  {{ if not $posts }}  
+    <p class="empty">暂无文章。</p>
+  {{ else }}
+    <div class="posts-grid">
+      {{ range $posts.ByDate.Reverse }}
+        <article class="post-preview glass">
+          <div class="post-header">
+            <span class="date">{{ .Date.Format "2006年1月2日 15:04:05" }}</span>
+            <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+            {{ if or .Params.categories .Params.tags }}
+              <div class="tags-container">
+                {{ if .Params.categories }}
+                  {{ range .Params.categories }}
+                    {{ $category := . }}
+                    {{ with $.Site.GetPage (printf "/categories/%s" $category) }}
+                      <a href="{{ .RelPermalink }}" class="category-badge">📁 {{ .Title }}</a>
+                    {{ end }}
+                  {{ end }}
+                {{ end }}
+                {{ if .Params.tags }}
+                  {{ range .Params.tags }}
+                    {{ $tag := . }}
+                    {{ with $.Site.GetPage (printf "/tags/%s" $tag) }}
+                      <a href="{{ .RelPermalink }}" class="tag-badge" style='--tag-color: {{ .Params.color | default "#00d4ff" }}'>#{{ .Title }}</a>
+                    {{ end }}
+                  {{ end }}
+                {{ end }}
+              </div>
+            {{ end }}
+          </div>
+          {{ if .Content }}
+            <p class="excerpt">{{ .Summary | truncate 120 }}</p>
+          {{ end }}
+          <div class="post-footer">
+            <a href="{{ .RelPermalink }}" class="read-more">
+              阅读全文
+              <span class="arrow">→</span>
+            </a>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+  {{ end }}
+</div>
+{{ end }}

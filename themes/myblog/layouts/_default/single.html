@@ -1,0 +1,75 @@
+{{ define "main" }}
+<div class="post-layout">
+  <div class="post-main">
+    <article class="post glass">
+      <header>
+        <h1>{{ .Title }}</h1>
+        <div class="meta">
+          <time class="date">{{ .Date.Format "2006年1月2日 15:04:05" }}</time>
+          <span class="read-count" id="busuanzi_container_page_pv">
+            <i class="fa-solid fa-eye"></i> <span id="busuanzi_value_page_pv"></span> 次阅读
+          </span>
+          <span class="back"><a href="{{ "/" | relURL }}">← 返回首页</a></span>
+        </div>
+        {{ if or .Params.categories .Params.tags }}
+          <div class="tags-container">
+            {{ if .Params.categories }}
+              {{ range .Params.categories }}
+                {{ $category := . }}
+                {{ with $.Site.GetPage (printf "/categories/%s" $category) }}
+                  <a href="{{ .RelPermalink }}" class="category-badge">📁 {{ .Title }}</a>
+                {{ end }}
+              {{ end }}
+            {{ end }}
+            {{ if .Params.tags }}
+              {{ range .Params.tags }}
+                {{ $tag := . }}
+                {{ with $.Site.GetPage (printf "/tags/%s" $tag) }}
+                  <a href="{{ .RelPermalink }}" class="tag-badge" style='--tag-color: {{ .Params.color | default "#00d4ff" }}'>#{{ .Title }}</a>
+                {{ end }}
+              {{ end }}
+            {{ end }}
+          </div>
+        {{ end }}
+      </header>
+
+      <div class="content markdown-body">
+        {{ .Content }}
+      </div>
+    </article>
+
+    <section class="comments-section">
+      <h2 class="section-title">评论</h2>
+      {{ if .Site.Params.giscus.enable }}
+        <div class="giscus"></div>
+        <script src="https://giscus.app/client.js"
+                data-repo="{{ .Site.Params.giscus.repo }}"
+                data-repo-id="{{ .Site.Params.giscus.repo_id }}"
+                data-category="{{ .Site.Params.giscus.category }}"
+                data-category-id="{{ .Site.Params.giscus.category_id }}"
+                data-mapping="{{ .Site.Params.giscus.mapping }}"
+                data-strict="{{ .Site.Params.giscus.strict }}"
+                data-reactions-enabled="{{ .Site.Params.giscus.reactions_enabled }}"
+                data-emit-metadata="{{ .Site.Params.giscus.emit_metadata }}"
+                data-input-position="{{ .Site.Params.giscus.input_position }}"
+                data-theme="{{ .Site.Params.giscus.theme }}"
+                data-lang="{{ .Site.Params.giscus.lang }}"
+                data-crossorigin="{{ .Site.Params.giscus.crossorigin }}"
+                async>
+        </script>
+      {{ else }}
+        <p class="empty" style="text-align: center; color: rgba(255,255,255,0.6);">评论系统尚未配置，请在配置文件中开启 Giscus。</p>
+      {{ end }}
+    </section>
+  </div>
+
+  {{ if .TableOfContents }}
+    <aside class="toc-sidebar">
+      <div class="toc">
+        <h3>目录</h3>
+        {{ .TableOfContents }}
+      </div>
+    </aside>
+  {{ end }}
+</div>
+{{ end }}

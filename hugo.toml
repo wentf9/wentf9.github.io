@@ -1,0 +1,23 @@
+# hugo.toml
+baseURL = "https://wentf9.github.io/"
+languageCode = "zh-cn"
+title = "wuyue's blog"
+theme = "myblog"
+
+[markup]
+  [markup.highlight]
+    style = "dracula"
+    lineNos = false
+    codeFences = true
+    guessSyntax = true
+    hl_Lines = ""
+    noClasses = false
+    tabWidth = 2
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [["\\[", "\\]"]]
+          inline = [["\\(", "\\)"]]
+

@@ -1,0 +1,51 @@
+{{ define "main" }}
+<div class="about-page">
+  <section class="profile">
+    <div class="profile-header">
+      {{ $avatar := .Params.avatar | default .Site.Params.about_avatar_url }}
+      {{ if $avatar }}
+        <img src="{{ $avatar | relURL }}" alt="avatar" class="avatar" />
+      {{ else }}
+        <div class="avatar-placeholder"><i data-lucide="user"></i></div>
+      {{ end }}
+      
+      <div class="profile-info">
+        <h1>{{ .Params.name | default .Site.Params.author_name | default .Site.Title }}</h1>
+        {{ $bio := .Params.bio | default .Site.Params.author_bio }}
+        {{ if $bio }}
+          <p class="bio">{{ $bio }}</p>
+        {{ end }}
+        
+        <div class="social-links">
+          {{ range .Params.social }}
+            <a href="{{ .url }}" target="_blank" rel="noopener" title="{{ .name }}" class="social-icon">
+              {{ if or (eq .icon "github") (eq .icon "twitter") (eq .icon "facebook") (eq .icon "instagram") (eq .icon "linkedin") (eq .icon "x-twitter") }}
+                <i class="fa-brands fa-{{ .icon }}"></i>
+              {{ else }}
+                <i class="fa-solid fa-{{ .icon | default "link" }}"></i>
+              {{ end }}
+            </a>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="markdown-body">
+      {{ .Content }}
+    </div>
+  </section>
+
+  {{ with .Params.skills }}
+    <section class="skills-section">
+      <h2>技能</h2>
+      <div class="skills">
+        {{ range . }}
+          <span class="skill-tag">{{ . }}</span>
+        {{ end }}
+      </div>
+    </section>
+  {{ end }}
+</div>
+{{ end }}
