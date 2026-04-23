@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Site.Title }} - {{ .Title }}</title>
+  <meta name="description" content="{{ .Site.Params.site_description }}">
+  <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/syntax.css" | relURL }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+  <script src="{{ "js/main.js" | relURL }}"></script>
+  <!-- 引入 Font Awesome 图标 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- 引入不蒜子计数 -->
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</head>
+<body>
+  <div id="background">
+    {{ with .Site.Params.background_image }}
+    <div id="bg-image" style="background-image: url('{{ . | relURL }}'); opacity: {{ $.Site.Params.background_image_opacity | default "0.3" }};"></div>
+    {{ end }}
+  </div>
+  
+  <div class="app-container">
+    <nav class="navbar">
+      <div class="nav-content">
+        <a href="{{ "/" | relURL }}" class="logo">{{ .Site.Params.site_name }}</a>
+        <div class="nav-links">
+          <a href="{{ "/" | relURL }}">首页</a>
+          <a href="{{ "categories" | relURL }}">分类</a>
+          <a href="{{ "about" | relURL }}">关于</a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      {{ block "main" . }}
+      {{ end }}
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="copyright">
+          &copy; {{ now.Format "2006" }} {{ .Site.Params.site_name }}. All rights reserved.
+        </div>
+        <div class="busuanzi-stats">
+          <span id="busuanzi_container_site_pv">
+            <i class="fa-solid fa-eye"></i> 全站访问量 <span id="busuanzi_value_site_pv"></span> 次
+          </span>
+          <span class="sep">|</span>
+          <span id="busuanzi_container_site_uv">
+            <i class="fa-solid fa-user"></i> 访客数 <span id="busuanzi_value_site_uv"></span> 人
+          </span>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
